@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kru Pai Classroom — คลื่น ม.3 (Matrix ULTRA • 30 ข้อ)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700;900&family=Rubik:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --neon:#22c55e;
+  --neon2:#6ee7b7;
+  --bg0:#000;
+  --bg1:#06120a;
+  --card:rgba(5,20,12,.92);
+  --line:#22c55e55;
+  --ink:#d1fae5;
+  --muted:#9fe9c8;
+  --warn:#f59e0b;
+  --bad:#fb7185;
+  --ok:#34d399;
+  --shadow:0 0 28px rgba(34,197,94,.25);
+  --shadow2:0 0 18px rgba(34,197,94,.35);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family:"Noto Sans Thai","Rubik",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top, rgba(0,255,150,.12), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(34,197,94,.10), transparent 40%),
+    linear-gradient(180deg,var(--bg1),var(--bg0));
+  overflow-x:hidden;
+}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:14px 12px 28px}
+.header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(0,0,0,.82), rgba(0,0,0,.45));
+  border-bottom:1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.banner{max-width:1040px;margin:auto;display:flex;align-items:center;gap:12px;padding:12px}
+.logo{
+  width:44px;height:44px;border-radius:14px;display:grid;place-items:center;
+  background:conic-gradient(from 0deg,#22c55e,#00ffd1,#22c55e);
+  color:#001b0d;font-weight:900; box-shadow:0 0 18px rgba(34,197,94,.5);
+}
+.brand{font-weight:900;font-size:clamp(16px,2.6vw,24px);letter-spacing:.2px}
+.sub{margin-left:auto;font-size:12px;color:#a7f3d0;opacity:.9}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+.start{
+  margin-top:14px;
+  padding:18px;
+  display:grid; gap:12px;
+  justify-items:center; text-align:center;
+}
+.bigtitle{font-weight:900;font-size:clamp(22px,4vw,36px); text-shadow:0 0 18px rgba(34,197,94,.35)}
+.tagline{color:var(--muted);font-size:clamp(13px,2.4vw,17px);line-height:1.5}
+.pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:4px}
+.pill{
+  padding:6px 10px;border-radius:999px;border:1px solid var(--line);
+  background:rgba(0,0,0,.35); color:#a7f3d0; font-weight:800; font-size:12px;
+}
+.input{
+  display:flex;gap:10px;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.35);
+  border:1px solid var(--line);
+  padding:10px 12px;border-radius:14px;
+  width:min(520px,95%);
+}
+.input input{
+  flex:1;border:none;background:transparent; outline:none;
+  color:var(--ink); font-size:18px; min-width:160px;
+}
+.btn{
+  border:none; cursor:pointer;
+  padding:12px 14px;border-radius:14px;
+  font-weight:900; letter-spacing:.2px;
+  color:#001b0d;
+  background: linear-gradient(180deg, #6ee7b7, #22c55e);
+  box-shadow: 0 10px 0 #0b5b33, 0 18px 36px rgba(34,197,94,.25);
+  transform:translateY(0);
+  transition:.15s;
+}
+.btn:hover{transform:translateY(-2px); box-shadow: 0 10px 0 #0b5b33, 0 0 22px rgba(34,197,94,.35);}
+.btn:active{transform:translateY(2px)}
+.btn.ghost{
+  background:rgba(0,0,0,.35);
+  color:#a7f3d0;
+  border:1px solid var(--line);
+  box-shadow:none;
+}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.note{font-size:12px;color:#9fe9c8;opacity:.9}
+
+.hide{display:none !important}
+
+/* HUD */
+.hud{
+  display:grid;
+  grid-template-columns:1fr auto auto auto;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-bottom:1px dashed var(--line);
+}
+.hud .step{
+  font-weight:900;
+  color:#a7f3d0;
+}
+.hud .score, .hud .who, .hud .mode{
+  font-size:12px;
+  color:#a7f3d0;
+  background:rgba(0,0,0,.35);
+  border:1px solid var(--line);
+  padding:6px 10px;border-radius:999px;font-weight:900;
+}
+.hud .score b{color:#d1fae5}
+.progress{height:8px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;border:1px solid var(--line);margin:0 12px 12px}
+.progress>div{height:100%;width:0%;background:linear-gradient(90deg,#22c55e,#00ffd1,#22c55e); box-shadow:0 0 12px rgba(0,255,209,.5)}
+
+.stage{padding:12px}
+.qbox{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15));
+  padding:14px;
+  box-shadow:0 0 22px rgba(34,197,94,.18);
+}
+.qtitle{
+  font-weight:900;
+  font-size:clamp(14px,2.2vw,16px);
+  color:#a7f3d0;
+  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+}
+.qtext{
+  margin-top:10px;
+  font-weight:900;
+  font-size:clamp(18px,2.9vw,26px);
+  line-height:1.35;
+  text-shadow:0 0 12px rgba(34,197,94,.18);
+}
+.formula{
+  margin-top:8px;
+  font-size:clamp(13px,2.2vw,16px);
+  color:#b7ffe0;
+  opacity:.95;
+}
+.options{
+  margin-top:12px;
+  display:grid; gap:10px;
+}
+.opt{
+  background:rgba(0,0,0,.35);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px 12px;
+  font-weight:900;
+  font-size:clamp(15px,2.5vw,18px);
+  cursor:pointer;
+  transition:.12s;
+  box-shadow:0 0 0 transparent;
+}
+.opt:hover{transform:translateY(-1px); box-shadow:var(--shadow2)}
+.opt.selected{outline:2px solid #00ffd1; box-shadow:0 0 22px rgba(0,255,209,.35)}
+.opt.correct{border-color: rgba(52,211,153,.9); outline:2px solid rgba(52,211,153,.85)}
+.opt.wrong{border-color: rgba(251,113,133,.95); outline:2px solid rgba(251,113,133,.7); animation:shake .18s linear 0s 2}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+.feedback{margin-top:12px; display:flex; justify-content:center}
+.feedback span{
+  display:inline-block;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.35);
+  font-weight:900;
+  box-shadow:0 0 18px rgba(34,197,94,.15);
+}
+.fb-ok{color:#6ee7b7}
+.fb-no{color:#ffb4c0}
+.explain{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px dashed var(--line);
+  background:rgba(0,0,0,.25);
+  color:#b7ffe0;
+  font-weight:800;
+  line-height:1.55;
+}
+.explain b{color:#d1fae5}
+
+/* footer bar */
+.footer{
+  position:sticky; bottom:0; z-index:40;
+  padding:10px 12px;
+  background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.80));
+  backdrop-filter: blur(10px);
+  border-top:1px solid var(--line);
+  display:flex; gap:8px; justify-content:center; flex-wrap:wrap;
+}
+.footer .btn{min-width:148px}
+
+/* floating control panel */
+.ctrl{
+  position:fixed; right:12px; top:88px; z-index:60;
+  display:grid; gap:8px;
+}
+.toggle{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.45);
+  box-shadow:0 0 18px rgba(34,197,94,.18);
+  color:#a7f3d0;
+  font-weight:900;
+  width:210px;
+}
+.switch{
+  width:48px;height:26px;border-radius:999px;
+  background:rgba(255,255,255,.10);
+  border:1px solid var(--line);
+  position:relative;
+}
+.switch i{
+  position:absolute; top:2px; left:2px;
+  width:20px;height:20px;border-radius:50%;
+  background:linear-gradient(180deg,#a7f3d0,#22c55e);
+  box-shadow:0 0 14px rgba(34,197,94,.45);
+  transition:.15s;
+}
+.switch.on{background:rgba(34,197,94,.25)}
+.switch.on i{left:26px}
+
+@media (max-width:560px){
+  .ctrl{right:10px; top:78px}
+  .toggle{width:190px}
+  .hud{grid-template-columns:1fr auto; grid-auto-rows:auto}
+  .hud .mode{display:none}
+}
+
+/* Matrix rain canvas */
+#rain{
+  position:fixed; inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.28;
+}
+.layer{position:relative; z-index:1}
+
+/* FX */
+.emoji-float{
+  position:fixed;
+  font-size:34px;
+  pointer-events:none;
+  z-index:70;
+  text-shadow:0 0 18px rgba(34,197,94,.55);
+  animation:floatUp 1.2s ease-out forwards;
+}
+@keyframes floatUp{
+  from{transform:translateY(0) scale(1);opacity:1}
+  to{transform:translateY(-140px) scale(1.1);opacity:0}
+}
+.confetti{position:fixed; left:0; top:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:65}
+.confetti i{position:absolute; width:8px; height:12px; opacity:.95; animation:fall 900ms linear forwards; box-shadow:0 0 10px rgba(0,255,209,.45)}
+@keyframes fall{ to{ transform:translateY(120vh) rotate(420deg); opacity:0 } }
+</style>
+</head>
+<body>
+<canvas id="rain"></canvas>
+
+<div class="header layer">
+  <div class="banner">
+    <div class="logo">KP</div>
+    <div class="brand">Kru Pai Classroom — <span style="color:var(--neon2)">คลื่น ม.3</span></div>
+    <div class="sub">Matrix ULTRA • 30 ข้อ (เนื้อหา + คำนวณ)</div>
+  </div>
+</div>
+
+<!-- floating controls -->
+<div class="ctrl layer">
+  <div class="toggle" onclick="toggleMatrix()">
+    <span>Matrix Glow</span>
+    <div id="swMatrix" class="switch on"><i></i></div>
+  </div>
+  <div class="toggle" onclick="toggleRain()">
+    <span>Matrix Rain</span>
+    <div id="swRain" class="switch on"><i></i></div>
+  </div>
+  <div class="toggle" onclick="toggleSound()">
+    <span>Sound FX</span>
+    <div id="swSound" class="switch on"><i></i></div>
+  </div>
+</div>
+
+<div class="wrap layer">
+  <!-- START -->
+  <div id="intro" class="card start">
+    <div class="bigtitle">Wave Mission — Matrix Exam</div>
+    <div class="tagline">
+      แบบทดสอบ “คลื่น” ม.3 จำนวน <b>30 ข้อ</b> (รวมข้อคำนวณ) <br/>
+      ตอบทีละข้อ • กดเลือก 1 ตัวเลือก • มีเฉลยและอธิบายสั้น ๆ
+    </div>
+    <div class="pills">
+      <div class="pill">สูตรหลัก: v = fλ</div>
+      <div class="pill">T = 1/f</div>
+      <div class="pill">หน่วย: v(m/s), f(Hz), λ(m)</div>
+    </div>
+
+    <div class="input">
+      <span style="font-weight:900;color:#a7f3d0">ชื่อเล่น:</span>
+      <input id="nickname" placeholder="พิมพ์ชื่อก่อนเริ่ม"/>
+    </div>
+    <div class="row">
+      <button class="btn" onclick="startGame()">เริ่มทำข้อสอบ</button>
+      <button class="btn ghost" onclick="preview()">ดูตัวอย่างข้อ</button>
+    </div>
+    <div class="note">* เสียงบรรยากาศจะเริ่มหลัง “การคลิกครั้งแรก” (ตามกติกาเบราว์เซอร์)</div>
+  </div>
+
+  <!-- GAME -->
+  <div id="game" class="card hide">
+    <div class="hud">
+      <div class="step">ข้อที่ <b id="step">1</b> / 30</div>
+      <div class="score">คะแนน: <b id="score">0</b></div>
+      <div class="who">ผู้เล่น: <b id="who">-</b></div>
+      <div class="mode">โหมด: <b>Matrix ULTRA</b></div>
+    </div>
+    <div class="progress"><div id="bar"></div></div>
+
+    <div class="stage">
+      <div class="qbox">
+        <div class="qtitle">
+          <div id="qtag">—</div>
+          <div id="difficulty">—</div>
+        </div>
+
+        <div id="qtext" class="qtext">—</div>
+        <div id="formula" class="formula hide"></div>
+
+        <div id="options" class="options"></div>
+
+        <div id="fb" class="feedback"></div>
+        <div id="explain" class="explain hide"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="btn ghost" onclick="clearChoice()">ล้างการเลือก</button>
+      <button class="btn" id="checkBtn" onclick="checkAns()">ตรวจคำตอบ</button>
+      <button class="btn" id="nextBtn" onclick="nextQ()" disabled>ข้อต่อไป ➜</button>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div id="summary" class="card hide" style="padding:18px; display:grid; gap:12px; justify-items:center; text-align:center">
+    <div class="bigtitle">ภารกิจจบแล้ว! ⚡</div>
+    <div class="tagline">คะแนนของ <b id="who2">-</b> คือ <b id="score2">0</b> / 30</div>
+    <div class="row">
+      <button class="btn" onclick="restart()">กลับหน้าแรก</button>
+      <button class="btn ghost" onclick="review()">ดูเฉลยทั้งชุด</button>
+      <button class="btn" onclick="startGame()">เล่นใหม่ (สุ่มลำดับ)</button>
+    </div>
+
+    <div id="reviewBox" class="card hide" style="width:min(920px,96%);padding:14px;text-align:left;background:rgba(0,0,0,.35)"></div>
+  </div>
+</div>
+
+<div id="fx" class="confetti hide"></div>
+
+<script>
+/* =========================
+   Question Bank (30)
+   - mix concept + calculation
+   ========================= */
+const Q = [
+  {
+    tag:"พื้นฐานคลื่น",
+    diff:"ง่าย",
+    q:"ข้อใด “ถูกต้อง” เกี่ยวกับความยาวคลื่น (λ)",
+    formula:"",
+    choices:[
+      "ระยะจากสันคลื่นถึงท้องคลื่น",
+      "ระยะระหว่างสันคลื่นติดกัน (หรือท้องคลื่นติดกัน)",
+      "จำนวนคลื่นที่ผ่านจุดหนึ่งใน 1 วินาที",
+      "พลังงานรวมของคลื่นทั้งหมด"
+    ],
+    a:1,
+    explain:"ความยาวคลื่น (λ) คือระยะซ้ำของรูปคลื่น เช่น สัน→สัน หรือ ท้อง→ท้อง"
+  },
+  {
+    tag:"พื้นฐานคลื่น",
+    diff:"ง่าย",
+    q:"ความถี่ (f) มีหน่วยเป็นอะไร",
+    formula:"",
+    choices:["เมตร (m)","เฮิรตซ์ (Hz)","วัตต์ (W)","นิวตัน (N)"],
+    a:1,
+    explain:"ความถี่คือจำนวนรอบต่อวินาที หน่วยคือ Hz (s⁻¹)"
+  },
+  {
+    tag:"สูตรคลื่น",
+    diff:"ง่าย",
+    q:"สมการความเร็วคลื่นที่ใช้บ่อยที่สุดคือข้อใด",
+    formula:"(ให้เลือกสมการที่ถูกต้อง)",
+    choices:["v = f + λ","v = fλ","v = λ/f","v = f/λ"],
+    a:1,
+    explain:"ความเร็วคลื่น v = fλ"
+  },
+  {
+    tag:"คำนวณ v=fλ",
+    diff:"ปานกลาง",
+    q:"คลื่นมีความถี่ 5 Hz และความยาวคลื่น 2 m ความเร็วคลื่นเท่าไร",
+    formula:"v = fλ",
+    choices:["2.5 m/s","7 m/s","10 m/s","20 m/s"],
+    a:2,
+    explain:"v = 5×2 = 10 m/s"
+  },
+  {
+    tag:"คำนวณ v=fλ",
+    diff:"ปานกลาง",
+    q:"คลื่นเคลื่อนที่ด้วยความเร็ว 12 m/s และมีความถี่ 3 Hz ความยาวคลื่นเท่าไร",
+    formula:"λ = v/f",
+    choices:["0.25 m","3 m","4 m","9 m"],
+    a:2,
+    explain:"λ = 12/3 = 4 m"
+  },
+  {
+    tag:"คำนวณ T=1/f",
+    diff:"ปานกลาง",
+    q:"ถ้าความถี่ของคลื่นเท่ากับ 10 Hz คาบ (T) เท่ากับเท่าไร",
+    formula:"T = 1/f",
+    choices:["0.01 s","0.1 s","1 s","10 s"],
+    a:1,
+    explain:"T = 1/10 = 0.1 s"
+  },
+  {
+    tag:"คำนวณ f=1/T",
+    diff:"ปานกลาง",
+    q:"คาบของการสั่นเท่ากับ 0.2 s ความถี่เท่ากับเท่าไร",
+    formula:"f = 1/T",
+    choices:["2 Hz","5 Hz","10 Hz","20 Hz"],
+    a:1,
+    explain:"f = 1/0.2 = 5 Hz"
+  },
+  {
+    tag:"ชนิดของคลื่น",
+    diff:"ง่าย",
+    q:"คลื่นเสียงในอากาศเป็นคลื่นชนิดใด",
+    formula:"",
+    choices:["คลื่นตามขวาง","คลื่นตามยาว","คลื่นนิ่ง","คลื่นแม่เหล็กไฟฟ้า"],
+    a:1,
+    explain:"เสียงในอากาศเป็นคลื่นตามยาว (อัด-ขยาย)"
+  },
+  {
+    tag:"ชนิดของคลื่น",
+    diff:"ง่าย",
+    q:"คลื่นบนเส้นเชือกที่สั่นขึ้นลงเป็นคลื่นชนิดใด",
+    formula:"",
+    choices:["คลื่นตามขวาง","คลื่นตามยาว","คลื่นเสียง","คลื่นนิ่งเท่านั้น"],
+    a:0,
+    explain:"การสั่นตั้งฉากกับทิศการเคลื่อนที่ของคลื่น → คลื่นตามขวาง"
+  },
+  {
+    tag:"การเปลี่ยนตัวกลาง",
+    diff:"ปานกลาง",
+    q:"เมื่อคลื่นเคลื่อนจากตัวกลางหนึ่งไปอีกตัวกลางหนึ่ง โดย “ความถี่คงเดิม” ข้อใดเปลี่ยนแน่นอน",
+    formula:"",
+    choices:["ความถี่","คาบ","ความยาวคลื่น","จำนวนรอบที่แหล่งกำเนิดสั่น"],
+    a:2,
+    explain:"ข้ามตัวกลาง ความถี่ขึ้นกับแหล่งกำเนิดจึงคงเดิม แต่ v เปลี่ยน → λ เปลี่ยน (v=fλ)"
+  },
+  {
+    tag:"การสะท้อน",
+    diff:"ง่าย",
+    q:"กฎการสะท้อนของคลื่นกล่าวว่า",
+    formula:"",
+    choices:["มุมตกกระทบ = มุมสะท้อน","มุมตกกระทบ + มุมสะท้อน = 90°","มุมสะท้อนมากกว่ามุมตกกระทบเสมอ","คลื่นสะท้อนต้องกลับทิศ 180° เสมอ"],
+    a:0,
+    explain:"การสะท้อน: มุมตกกระทบเท่ากับมุมสะท้อน"
+  },
+  {
+    tag:"การหักเห",
+    diff:"ปานกลาง",
+    q:"คลื่นน้ำจากน้ำลึกเข้าสู่น้ำตื้น โดยทั่วไปความเร็วคลื่นจะ…",
+    formula:"",
+    choices:["เพิ่มขึ้น","ลดลง","คงเดิม","เป็นศูนย์"],
+    a:1,
+    explain:"น้ำตื้นทำให้คลื่นน้ำช้าลง → v ลดลง (ความถี่คงเดิม จึงทำให้ λ ลดลงด้วย)"
+  },
+  {
+    tag:"การเลี้ยวเบน",
+    diff:"ปานกลาง",
+    q:"การเลี้ยวเบน (diffraction) จะเด่นชัดเมื่อ",
+    formula:"",
+    choices:["ช่องเปิดกว้างมากกว่า λ มาก","ช่องเปิดมีขนาดใกล้เคียง λ","คลื่นมีความถี่สูงมากเสมอ","คลื่นมีความยาวคลื่นสั้นมากเสมอ"],
+    a:1,
+    explain:"เลี้ยวเบนเด่นเมื่อขนาดช่อง/สิ่งกีดขวางใกล้เคียงความยาวคลื่น"
+  },
+  {
+    tag:"การแทรกสอด",
+    diff:"ปานกลาง",
+    q:"เงื่อนไข “แทรกสอดเสริม” ของคลื่นคือ",
+    formula:"",
+    choices:["สันชนท้องเสมอ","สันชนสัน หรือ ท้องชนท้อง","ความถี่ต่างกันมาก","แอมพลิจูดเป็นศูนย์"],
+    a:1,
+    explain:"แทรกสอดเสริม: เฟสตรงกัน (สัน-สัน หรือ ท้อง-ท้อง) แอมพลิจูดรวมมากขึ้น"
+  },
+  {
+    tag:"การแทรกสอด",
+    diff:"ปานกลาง",
+    q:"ถ้าคลื่น 2 คลื่นมีแอมพลิจูดเท่ากัน A และมาถึงจุดเดียวกันแบบเสริมกัน แอมพลิจูดรวมเท่ากับ",
+    formula:"",
+    choices:["A","2A","A/2","0"],
+    a:1,
+    explain:"เสริมกันเต็มที่: A + A = 2A"
+  },
+  {
+    tag:"การแทรกสอด",
+    diff:"ปานกลาง",
+    q:"ถ้าคลื่น 2 คลื่นมีแอมพลิจูดเท่ากัน A และมาถึงแบบหักล้างกันเต็มที่ แอมพลิจูดรวมเท่ากับ",
+    formula:"",
+    choices:["A","2A","A/2","0"],
+    a:3,
+    explain:"หักล้างเต็มที่: A - A = 0"
+  },
+  {
+    tag:"คำนวณระยะทางคลื่น",
+    diff:"ปานกลาง",
+    q:"คลื่นเดินทางด้วยความเร็ว 8 m/s ในเวลา 3 s คลื่นเดินทางได้ระยะเท่าไร",
+    formula:"s = vt",
+    choices:["11 m","24 m","28 m","64 m"],
+    a:1,
+    explain:"s = 8×3 = 24 m"
+  },
+  {
+    tag:"คำนวณรวมสูตร",
+    diff:"ปานกลาง",
+    q:"คลื่นมีความยาวคลื่น 0.5 m และความเร็ว 2 m/s ความถี่เท่าไร",
+    formula:"f = v/λ",
+    choices:["0.25 Hz","1 Hz","2 Hz","4 Hz"],
+    a:3,
+    explain:"f = 2/0.5 = 4 Hz"
+  },
+  {
+    tag:"คำนวณรวมสูตร",
+    diff:"ปานกลาง",
+    q:"คลื่นมีความถี่ 25 Hz และความเร็ว 50 m/s ความยาวคลื่นเท่าไร",
+    formula:"λ = v/f",
+    choices:["0.5 m","2 m","25 m","1250 m"],
+    a:0,
+    explain:"λ = 50/25 = 2? ระวัง! 50/25 = 2 m (ดังนั้นคำตอบคือ 2 m)",
+    // We'll fix choices accordingly below in init
+  },
+  {
+    tag:"ความหมายของแอมพลิจูด",
+    diff:"ง่าย",
+    q:"แอมพลิจูดของคลื่นหมายถึง",
+    formula:"",
+    choices:["ระยะจากสันถึงท้อง","การกระจัดมากสุดจากตำแหน่งสมดุล","จำนวนคลื่นต่อวินาที","ระยะที่คลื่นเคลื่อนที่ใน 1 s"],
+    a:1,
+    explain:"แอมพลิจูดคือการกระจัดมากสุดจากตำแหน่งสมดุล"
+  },
+  {
+    tag:"พลังงานของคลื่น",
+    diff:"ปานกลาง",
+    q:"โดยทั่วไปพลังงานที่คลื่นพาไป “สัมพันธ์” กับแอมพลิจูดอย่างไร",
+    formula:"",
+    choices:["แอมพลิจูดมาก พลังงานน้อย","แอมพลิจูดมาก พลังงานมาก","ไม่เกี่ยวกันเลย","แอมพลิจูดมาก ความถี่ต้องลดลงเสมอ"],
+    a:1,
+    explain:"แอมพลิจูดมาก → พลังงานมาก (แนวคิดพื้นฐานระดับ ม.3)"
+  },
+  {
+    tag:"คลื่นนิ่ง",
+    diff:"ปานกลาง",
+    q:"ในคลื่นนิ่ง จุดที่สั่นมากสุดเรียกว่าอะไร",
+    formula:"",
+    choices:["ปม (node)","ปุ่ม (antinode)","สันคลื่น","ท้องคลื่น"],
+    a:1,
+    explain:"ปุ่ม (antinode) สั่นมากสุด ส่วนปม (node) ไม่สั่น"
+  },
+  {
+    tag:"คลื่นนิ่ง",
+    diff:"ปานกลาง",
+    q:"ในคลื่นนิ่ง จุดที่ “ไม่สั่น” เรียกว่า",
+    formula:"",
+    choices:["ปม (node)","ปุ่ม (antinode)","เฟส","แอมพลิจูด"],
+    a:0,
+    explain:"ปม (node) เป็นจุดแอมพลิจูดเป็นศูนย์"
+  },
+  {
+    tag:"เสียง",
+    diff:"ง่าย",
+    q:"เสียงดัง/ค่อยสัมพันธ์กับอะไรเป็นหลัก",
+    formula:"",
+    choices:["ความถี่","ความยาวคลื่น","แอมพลิจูด","คาบ"],
+    a:2,
+    explain:"เสียงดังขึ้นเมื่อแอมพลิจูดของการสั่นมากขึ้น"
+  },
+  {
+    tag:"เสียง",
+    diff:"ง่าย",
+    q:"เสียงแหลม/ทุ้มสัมพันธ์กับอะไรเป็นหลัก",
+    formula:"",
+    choices:["ความถี่","แอมพลิจูด","ความเร็วเสียง","พลังงานรวม"],
+    a:0,
+    explain:"เสียงแหลม = ความถี่สูง, เสียงทุ้ม = ความถี่ต่ำ"
+  },
+  {
+    tag:"คำนวณเสียง (v)",
+    diff:"ปานกลาง",
+    q:"ถ้าความเร็วเสียงในอากาศประมาณ 340 m/s และเสียงมีความถี่ 170 Hz ความยาวคลื่นเท่าไร",
+    formula:"λ = v/f",
+    choices:["0.5 m","1 m","2 m","170 m"],
+    a:2,
+    explain:"λ = 340/170 = 2 m"
+  },
+  {
+    tag:"คำนวณเสียง (f)",
+    diff:"ปานกลาง",
+    q:"เสียงมีความยาวคลื่น 0.85 m ในอากาศ (v≈340 m/s) ความถี่เท่าไร",
+    formula:"f = v/λ",
+    choices:["200 Hz","300 Hz","400 Hz","500 Hz"],
+    a:2,
+    explain:"f = 340/0.85 = 400 Hz"
+  },
+  {
+    tag:"สะท้อนปลายตรึง/ปลายอิสระ",
+    diff:"ยากเล็กน้อย",
+    q:"คลื่นบนเชือกสะท้อนที่ปลาย “ตรึงแน่น” แนวโน้มเป็นอย่างไร",
+    formula:"",
+    choices:["สะท้อนไม่กลับเฟส","สะท้อนกลับเฟส 180° (กลับหัว)","ความถี่เปลี่ยนทันที","ความยาวคลื่นเพิ่มเสมอ"],
+    a:1,
+    explain:"ปลายตรึง: คลื่นสะท้อนกลับเฟส (กลับหัว)"
+  },
+  {
+    tag:"สะท้อนปลายตรึง/ปลายอิสระ",
+    diff:"ยากเล็กน้อย",
+    q:"คลื่นบนเชือกสะท้อนที่ปลาย “อิสระ” แนวโน้มเป็นอย่างไร",
+    formula:"",
+    choices:["สะท้อนกลับเฟส 180°","สะท้อนไม่กลับเฟส (ไม่กลับหัว)","หยุดทันที","กลายเป็นคลื่นตามยาว"],
+    a:1,
+    explain:"ปลายอิสระ: สะท้อนไม่กลับเฟส"
+  },
+  {
+    tag:"คำนวณผสม",
+    diff:"ยากเล็กน้อย",
+    q:"คลื่นมีความถี่ 4 Hz เดินทางได้ 24 m ในเวลา 6 s ความยาวคลื่นเท่าไร",
+    formula:"v = s/t,  λ = v/f",
+    choices:["0.5 m","1 m","2 m","4 m"],
+    a:2,
+    explain:"v=24/6=4 m/s แล้ว λ=v/f=4/4=1 m (ดังนั้นคำตอบคือ 1 m)",
+  },
+  {
+    tag:"คำนวณผสม",
+    diff:"ยากเล็กน้อย",
+    q:"ถ้าคลื่นมีคาบ 0.25 s และความยาวคลื่น 3 m ความเร็วคลื่นเท่าไร",
+    formula:"f = 1/T, v = fλ",
+    choices:["6 m/s","9 m/s","12 m/s","24 m/s"],
+    a:3,
+    explain:"f=1/0.25=4 Hz → v=4×3=12 m/s (ดังนั้นคำตอบคือ 12 m/s)",
+  }
+];
+
+/* Fix two questions where we intentionally wrote 'ระวัง' explanations */
+(function normalize(){
+  // Q[18] should have correct answer 2 m
+  Q[18].choices = ["0.5 m","2 m","25 m","1250 m"];
+  Q[18].a = 1;
+  Q[18].explain = "λ = 50/25 = 2 m";
+
+  // Q[28] should be 1 m not 2 m
+  Q[28].choices = ["0.5 m","1 m","2 m","4 m"];
+  Q[28].a = 1;
+  Q[28].explain = "v=24/6=4 m/s แล้ว λ=v/f=4/4=1 m";
+
+  // Q[29] should be 12 m/s not 24 m/s
+  Q[29].choices = ["6 m/s","9 m/s","12 m/s","24 m/s"];
+  Q[29].a = 2;
+  Q[29].explain = "f=1/0.25=4 Hz → v=4×3=12 m/s";
+})();
+
+/* =========================
+   Game state
+   ========================= */
+let order=[], idx=0, score=0, nickname="ผู้เล่น";
+let selected = -1;
+let locked = false;
+
+const elIntro = document.getElementById('intro');
+const elGame = document.getElementById('game');
+const elSummary = document.getElementById('summary');
+
+const elStep = document.getElementById('step');
+const elScore = document.getElementById('score');
+const elWho = document.getElementById('who');
+const elWho2 = document.getElementById('who2');
+const elScore2 = document.getElementById('score2');
+const elBar = document.getElementById('bar');
+
+const elQtag = document.getElementById('qtag');
+const elDiff = document.getElementById('difficulty');
+const elQtext = document.getElementById('qtext');
+const elFormula = document.getElementById('formula');
+const elOptions = document.getElementById('options');
+const elFb = document.getElementById('fb');
+const elExplain = document.getElementById('explain');
+const elNext = document.getElementById('nextBtn');
+
+document.getElementById('nickname').addEventListener('keydown',e=>{
+  if(e.key==='Enter') startGame();
+});
+
+/* =========================
+   Sound engine (FX + Ambient)
+   ========================= */
+let soundOn = true;
+let ambientOn = true;
+let ctx = null;
+let ambientNodes = null;
+
+function audioCtx(){
+  if(!ctx){
+    ctx = new (window.AudioContext||window.webkitAudioContext)();
+  }
+  return ctx;
+}
+
+function beep(f=880, d=0.07, type='sine', gain=0.18){
+  if(!soundOn) return;
+  try{
+    const ac = audioCtx();
+    const o = ac.createOscillator();
+    const g = ac.createGain();
+    o.type = type;
+    o.frequency.value = f;
+    g.gain.value = 0.0001;
+    o.connect(g);
+    g.connect(ac.destination);
+    const now = ac.currentTime;
+    g.gain.setValueAtTime(0.0001, now);
+    g.gain.exponentialRampToValueAtTime(gain, now + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + d);
+    o.start(now);
+    o.stop(now + d + 0.02);
+  }catch(e){}
+}
+
+function matrixClick(){ beep(1600,0.04,'square',0.12); }
+function correctFx(){ beep(1400,0.08,'triangle',0.20); setTimeout(()=>beep(1800,0.06,'triangle',0.16),85); }
+function wrongFx(){ beep(240,0.10,'sawtooth',0.14); setTimeout(()=>beep(180,0.08,'sawtooth',0.12),85); }
+
+function startAmbient(){
+  if(!soundOn || !ambientOn) return;
+  try{
+    const ac = audioCtx();
+    if(ambientNodes) return;
+
+    // soft sci-fi pad: two detuned sines + lowpass + tremolo
+    const o1 = ac.createOscillator(); o1.type="sine"; o1.frequency.value=76;
+    const o2 = ac.createOscillator(); o2.type="sine"; o2.frequency.value=76.8;
+
+    const g = ac.createGain(); g.gain.value = 0.02;
+
+    const lp = ac.createBiquadFilter(); lp.type="lowpass"; lp.frequency.value = 420;
+
+    const trem = ac.createOscillator(); trem.type="sine"; trem.frequency.value = 0.25;
+    const tremGain = ac.createGain(); tremGain.gain.value = 0.012;
+
+    trem.connect(tremGain);
+    tremGain.connect(g.gain);
+
+    o1.connect(lp); o2.connect(lp);
+    lp.connect(g); g.connect(ac.destination);
+
+    o1.start(); o2.start(); trem.start();
+    ambientNodes = {o1,o2,g,lp,trem,tremGain};
+  }catch(e){}
+}
+
+function stopAmbient(){
+  try{
+    if(!ambientNodes) return;
+    ambientNodes.o1.stop(); ambientNodes.o2.stop(); ambientNodes.trem.stop();
+    ambientNodes = null;
+  }catch(e){}
+}
+
+/* Start ambient after first user interaction */
+window.addEventListener('pointerdown', ()=>{
+  if(soundOn && ambientOn) startAmbient();
+}, {once:true});
+
+/* =========================
+   Matrix toggles
+   ========================= */
+let matrixOn = true;
+let rainOn = true;
+
+function setSwitch(id, on){
+  const sw = document.getElementById(id);
+  sw.classList.toggle('on', on);
+}
+function toggleMatrix(){
+  matrixOn = !matrixOn;
+  // we keep layout neon either way; this toggle primarily dims glow
+  document.documentElement.style.setProperty('--shadow', matrixOn ? '0 0 28px rgba(34,197,94,.25)' : '0 0 10px rgba(34,197,94,.10)');
+  document.documentElement.style.setProperty('--shadow2', matrixOn ? '0 0 18px rgba(34,197,94,.35)' : '0 0 8px rgba(34,197,94,.18)');
+  setSwitch('swMatrix', matrixOn);
+  matrixClick();
+}
+function toggleRain(){
+  rainOn = !rainOn;
+  document.getElementById('rain').style.display = rainOn ? 'block' : 'none';
+  setSwitch('swRain', rainOn);
+  matrixClick();
+}
+function toggleSound(){
+  soundOn = !soundOn;
+  if(!soundOn){ stopAmbient(); }
+  setSwitch('swSound', soundOn);
+  // click sound only if soundOn after toggle
+  if(soundOn){ matrixClick(); startAmbient(); }
+}
+
+/* =========================
+   Visual FX
+   ========================= */
+function emojiFloat(symbol="😎"){
+  const e=document.createElement("div");
+  e.className="emoji-float";
+  e.textContent=symbol;
+  e.style.left=(35+Math.random()*30)+"vw";
+  e.style.top=(55+Math.random()*10)+"vh";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),1200);
+}
+function burst(){
+  const fx = document.getElementById('fx');
+  fx.classList.remove('hide');
+  fx.innerHTML = "";
+  const colors = ['#22c55e','#00ffd1','#6ee7b7','#34d399','#a7f3d0'];
+  for(let i=0;i<36;i++){
+    const it = document.createElement('i');
+    it.style.left = (Math.random()*100) + 'vw';
+    it.style.top = '-10vh';
+    it.style.background = colors[i%colors.length];
+    it.style.animationDelay = (Math.random()*0.12)+'s';
+    fx.appendChild(it);
+  }
+  setTimeout(()=>{ fx.classList.add('hide'); fx.innerHTML=""; }, 1000);
+}
+
+/* =========================
+   Game flow
+   ========================= */
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function preview(){
+  matrixClick();
+  document.getElementById('nickname').value = document.getElementById('nickname').value || "Kru Pai";
+  startGame(true);
+}
+
+function startGame(isPreview=false){
+  matrixClick();
+  nickname = (document.getElementById('nickname').value || "ผู้เล่น").trim();
+  if(!nickname) nickname="ผู้เล่น";
+
+  order = shuffle([...Array(Q.length).keys()]);
+  idx=0; score=0;
+  selected=-1; locked=false;
+
+  elWho.textContent = nickname;
+  elWho2.textContent = nickname;
+  elScore.textContent = "0";
+
+  elIntro.classList.add('hide');
+  elSummary.classList.add('hide');
+  document.getElementById('reviewBox').classList.add('hide');
+  elGame.classList.remove('hide');
+
+  renderQ();
+
+  if(isPreview){
+    // only show first question then allow restart
+  }
+}
+
+function renderQ(){
+  const item = Q[order[idx]];
+  selected=-1; locked=false;
+
+  elStep.textContent = (idx+1);
+  elScore.textContent = score;
+  elBar.style.width = (idx/Q.length*100) + "%";
+
+  elQtag.textContent = "หมวด: " + item.tag;
+  elDiff.textContent = "ระดับ: " + item.diff;
+
+  elQtext.textContent = item.q;
+
+  if(item.formula && item.formula.trim()){
+    elFormula.textContent = "Hint: " + item.formula;
+    elFormula.classList.remove('hide');
+  }else{
+    elFormula.classList.add('hide');
+  }
+
+  elOptions.innerHTML = "";
+  elFb.innerHTML = "";
+  elExplain.classList.add('hide');
+  elExplain.innerHTML = "";
+
+  item.choices.forEach((c,i)=>{
+    const d = document.createElement('div');
+    d.className = "opt";
+    d.innerHTML = `<span style="color:#6ee7b7">(${String.fromCharCode(65+i)})</span> ${c}`;
+    d.addEventListener('click', ()=> selectOpt(i));
+    elOptions.appendChild(d);
+  });
+
+  elNext.disabled = true;
+}
+
+function selectOpt(i){
+  if(locked) return;
+  matrixClick();
+  selected = i;
+  [...elOptions.children].forEach((node,idx2)=>{
+    node.classList.toggle('selected', idx2===i);
+  });
+}
+
+function clearChoice(){
+  if(locked) return;
+  matrixClick();
+  selected = -1;
+  [...elOptions.children].forEach(node=>node.classList.remove('selected'));
+}
+
+function checkAns(){
+  if(locked) return;
+
+  if(selected<0){
+    wrongFx();
+    elFb.innerHTML = `<span class="fb-no">ยังไม่ได้เลือกคำตอบนะ ⚠️</span>`;
+    return;
+  }
+
+  const item = Q[order[idx]];
+  locked = true;
+
+  const nodes = [...elOptions.children];
+  const correct = item.a;
+
+  nodes.forEach((n,i)=>{
+    n.classList.remove('selected');
+    if(i===correct) n.classList.add('correct');
+    if(i===selected && i!==correct) n.classList.add('wrong');
+  });
+
+  if(selected===correct){
+    score += 1;
+    elScore.textContent = score;
+    elFb.innerHTML = `<span class="fb-ok">ถูกต้อง! MATRIX ✔ 😎</span>`;
+    emojiFloat("😎"); emojiFloat("✨");
+    burst();
+    correctFx();
+  }else{
+    elFb.innerHTML = `<span class="fb-no">ยังไม่ใช่จ้า ❌ ลองดูเฉลยสั้น ๆ ด้านล่างนะ</span>`;
+    emojiFloat("😵‍💫");
+    wrongFx();
+  }
+
+  elExplain.classList.remove('hide');
+  elExplain.innerHTML = `<b>เฉลย:</b> (${String.fromCharCode(65+correct)}) ${item.choices[correct]}<br/><b>อธิบาย:</b> ${item.explain}`;
+  elNext.disabled = false;
+}
+
+function nextQ(){
+  matrixClick();
+  if(idx < Q.length-1){
+    idx++;
+    renderQ();
+  }else{
+    endGame();
+  }
+}
+
+function endGame(){
+  elGame.classList.add('hide');
+  elSummary.classList.remove('hide');
+  elScore2.textContent = score;
+  elBar.style.width = "100%";
+  correctFx();
+  setTimeout(()=>correctFx(),120);
+}
+
+function restart(){
+  matrixClick();
+  elSummary.classList.add('hide');
+  elGame.classList.add('hide');
+  elIntro.classList.remove('hide');
+}
+
+function review(){
+  matrixClick();
+  const box = document.getElementById('reviewBox');
+  box.classList.remove('hide');
+
+  let html = `
+    <div style="font-weight:900;font-size:18px;margin-bottom:8px;color:#a7f3d0">เฉลยทั้งชุด (30 ข้อ)</div>
+    <div style="color:#9fe9c8;font-weight:800;margin-bottom:10px">* ลำดับข้ออิงตาม “ชุดคำถามจริง” ไม่ใช่ลำดับที่สุ่มตอนเล่น</div>
+  `;
+
+  Q.forEach((item,i)=>{
+    const ans = item.a;
+    html += `
+      <div style="border:1px solid rgba(34,197,94,.25); border-radius:14px; padding:10px 12px; margin:10px 0; background:rgba(0,0,0,.22)">
+        <div style="font-weight:900; color:#d1fae5">ข้อ ${i+1}. <span style="color:#a7f3d0">(${item.tag} • ${item.diff})</span></div>
+        <div style="margin-top:6px; font-weight:900">${item.q}</div>
+        <div style="margin-top:8px; color:#b7ffe0"><b>ตอบ:</b> (${String.fromCharCode(65+ans)}) ${item.choices[ans]}</div>
+        <div style="margin-top:6px; color:#9fe9c8"><b>อธิบาย:</b> ${item.explain}</div>
+      </div>
+    `;
+  });
+
+  box.innerHTML = html;
+}
+
+/* =========================
+   Matrix rain (canvas)
+   ========================= */
+const canvas = document.getElementById('rain');
+const c = canvas.getContext('2d');
+let w,h,cols,ypos,chars,fontSize;
+
+function resize(){
+  w = canvas.width = window.innerWidth * devicePixelRatio;
+  h = canvas.height = window.innerHeight * devicePixelRatio;
+  fontSize = Math.floor(16 * devicePixelRatio);
+  chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモラリルレロワヲン";
+  cols = Math.floor(w / fontSize);
+  ypos = Array(cols).fill(0);
+}
+window.addEventListener('resize', resize);
+resize();
+
+function drawRain(){
+  if(!rainOn){ requestAnimationFrame(drawRain); return; }
+  c.fillStyle = "rgba(0,0,0,0.08)";
+  c.fillRect(0,0,w,h);
+
+  c.fillStyle = "rgba(34,197,94,0.85)";
+  c.font = `${fontSize}px monospace`;
+
+  for(let i=0;i<cols;i++){
+    const text = chars[Math.floor(Math.random()*chars.length)];
+    const x = i*fontSize;
+    const y = ypos[i]*fontSize;
+
+    c.fillText(text, x, y);
+
+    if(y > h && Math.random() > 0.975) ypos[i] = 0;
+    ypos[i]++;
+  }
+  requestAnimationFrame(drawRain);
+}
+drawRain();
+</script>
+</body>
+</html>
